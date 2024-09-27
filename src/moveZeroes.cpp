@@ -4,26 +4,19 @@
 
 using namespace std;
 
+// try think reverse, moveZeroes and keep the non-zeroes relative order -> move non-zeros
+
+
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-      int head = 0;
+        int left = 0;
 
-        while (head < nums.size() && nums[head] != 0){
-            head++;
-        }
-
-        int tail = head + 1;
-
-        while (tail < nums.size() && head < nums.size()){
-            if (nums[head]!=0) head++;
-            if (nums[tail]==0) tail++;
-
-            if (tail < nums.size() && head < nums.size() && nums[head] == 0 && nums[tail] != 0){
-                int temp = nums[head];
-                nums[head] = nums[tail];
-                nums[tail] = temp;
+        for (int right = 0; right < nums.size(); right++) {
+            if (nums[right] != 0) {
+                swap(nums[right], nums[left]);
+                left++;
             }
-        }
+        }        
     }
 };
