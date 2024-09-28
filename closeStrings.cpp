@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 class Solution {
 public:
   bool closeStrings(string word1, string word2) {
@@ -11,15 +10,16 @@ public:
     
     int freq1[26] = {0};
     int freq2[26] = {0};
+    int bit1 = 0, bit2=0;
 
     for (int i = 0; i < word1.size(); i++){
       freq1[word1[i]-'a'] ++;
       freq2[word2[i]-'a'] ++;
+      bit1 = bit1 | (1 << (word1[i]-'a'));
+      bit2 = bit2 | (1 << (word2[i]-'a'));
     }
 
-    for (int i = 0; i < 26; i++){
-      if (freq1[i] == 0 && freq2[i] != 0) return false; 
-    }
+    if (bit1 != bit2) return false;
 
     sort(freq1, freq1+26);
     sort(freq2, freq2+26);
